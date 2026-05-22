@@ -3,7 +3,7 @@ import Link from "next/link";
 export const heroData = {
   location: "Lakhimpur, Assam, India",
 
-  availability: "Available Collaborations",
+  availability: "Available for Collaborations",
 
   role: "Software Engineer",
 
