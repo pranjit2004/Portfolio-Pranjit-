@@ -74,7 +74,7 @@ export const FeaturedProjectsData = {
         "GSAP",
       ],
 
-      image: "Lumina1.png",
+      image: "lumina1.png",
     },
   ],
 };
