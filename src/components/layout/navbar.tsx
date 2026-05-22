@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState, useRef } from "react";
+
 import {
   motion,
   AnimatePresence,
@@ -8,11 +10,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 
-import {
-  Menu,
-  X,
-  ArrowUpRight,
-} from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 import Link from "next/link";
 
@@ -21,10 +19,10 @@ import Link from "next/link";
 // ======================================================
 
 const NAV_LINKS = [
-  { name: "Work", href: "#work" },
-  { name: "Expertise", href: "#expertise" },
   { name: "About", href: "#about" },
-  { name: "Journal", href: "#journal" },
+  { name: "Expertise", href: "#skills" },
+  { name: "Projects", href: "#Projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
 // ======================================================
@@ -34,23 +32,16 @@ const NAV_LINKS = [
 export default function Header() {
   const { scrollY } = useScroll();
 
-  const [isScrolled, setIsScrolled] =
-    useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] =
-    useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const [hoveredIndex, setHoveredIndex] =
-    useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Scroll Detection
-  useMotionValueEvent(
-    scrollY,
-    "change",
-    (latest) => {
-      setIsScrolled(latest > 80);
-    }
-  );
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 80);
+  });
 
   return (
     <>
@@ -82,11 +73,7 @@ export default function Header() {
           duration-700
           ease-[cubic-bezier(0.22,1,0.36,1)]
 
-          ${
-            isScrolled
-              ? "px-0 pt-0"
-              : "px-4 pt-6 md:px-8"
-          }
+          ${isScrolled ? "px-0 pt-0" : "px-4 pt-6 md:px-8"}
         `}
       >
         {/* ====================================================== */}
@@ -161,34 +148,13 @@ export default function Header() {
             href="/"
             className="group relative z-10 flex items-center gap-3"
           >
-            <motion.div
-              whileHover={{
-                scale: 1.08,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 20,
-              }}
-              className="
-                relative
-                flex
-                h-10
-                w-10
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white
-                shadow-[0_0_25px_rgba(255,255,255,0.12)]
-              "
-            >
-              <motion.div
-                layoutId="logo-dot"
-                className="h-2.5 w-2.5 rounded-full bg-black"
-              />
-            </motion.div>
+            <Image
+              src="/logo.svg"
+              alt="Pranjit Logo"
+              width={48}
+              height={48}
+              className="object-contain"
+            />
 
             <div className="flex flex-col leading-none">
               <span className="text-lg font-semibold tracking-tight text-white">
@@ -196,7 +162,7 @@ export default function Header() {
               </span>
 
               <span className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-                Creative Developer
+                HAZARIKA
               </span>
             </div>
           </Link>
@@ -210,12 +176,8 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                onMouseEnter={() =>
-                  setHoveredIndex(index)
-                }
-                onMouseLeave={() =>
-                  setHoveredIndex(null)
-                }
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 className="
                   relative
                   px-5
@@ -335,9 +297,7 @@ export default function Header() {
           {/* ====================================================== */}
 
           <button
-            onClick={() =>
-              setIsMobileMenuOpen(true)
-            }
+            onClick={() => setIsMobileMenuOpen(true)}
             className="
               relative
               z-10
@@ -382,9 +342,7 @@ export default function Header() {
               </span>
 
               <button
-                onClick={() =>
-                  setIsMobileMenuOpen(false)
-                }
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="
                   rounded-full
                   border
@@ -419,9 +377,7 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    onClick={() =>
-                      setIsMobileMenuOpen(false)
-                    }
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className="
                       block
                       border-b
@@ -455,9 +411,7 @@ export default function Header() {
             >
               <Link
                 href="#contact"
-                onClick={() =>
-                  setIsMobileMenuOpen(false)
-                }
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="
                   flex
                   items-center
@@ -492,7 +446,6 @@ function MagneticButton({
 }: {
   children: React.ReactNode;
 }) {
-
   const ref = useRef<HTMLDivElement>(null);
 
   const [position, setPosition] = useState({
@@ -501,9 +454,8 @@ function MagneticButton({
   });
 
   const handleMouse = (
-    e: React.MouseEvent<HTMLDivElement>
+    e: React.MouseEvent<HTMLDivElement>,
   ) => {
-
     const { clientX, clientY } = e;
 
     const {
@@ -513,11 +465,9 @@ function MagneticButton({
       top,
     } = ref.current!.getBoundingClientRect();
 
-    const x =
-      clientX - (left + width / 2);
+    const x = clientX - (left + width / 2);
 
-    const y =
-      clientY - (top + height / 2);
+    const y = clientY - (top + height / 2);
 
     setPosition({
       x: x * 0.15,

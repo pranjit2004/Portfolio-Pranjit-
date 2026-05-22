@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+
 import {
   motion,
   useScroll,
@@ -8,102 +9,40 @@ import {
   useSpring,
 } from "framer-motion";
 
-import {
-  GraduationCap,
-  Code2,
-  Rocket,
-  BrainCircuit,
-  Sparkles,
-} from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-// --- Data & Configuration ---
-
-const EXPERIENCES = [
-  {
-    year: "2023 — Present",
-    role: "Computer Science Engineering",
-    entity: "B.Tech Architecture",
-    description:
-      "Laying the mathematical and architectural foundation. Deep diving into complex algorithms, memory management, and advanced data structures while cultivating a rigorous, systems-level engineering mindset.",
-    icon: GraduationCap,
-    gradient: "from-blue-500/20 to-purple-500/20",
-    tags: [
-      "Algorithms",
-      "Data Structures",
-      "System Design",
-      "C++",
-    ],
-  },
-  {
-    year: "2023 — 2024",
-    role: "MERN Stack & Frontend Developer",
-    entity: "Building the Web",
-    description:
-      "Transitioned from terminal logic to visual engineering. Mastered the React ecosystem and modern backend architectures to build scalable, full-stack applications with an obsessive focus on user interface design.",
-    icon: Code2,
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    tags: [
-      "React",
-      "Next.js",
-      "Node.js",
-      "MongoDB",
-    ],
-  },
-  {
-    year: "2024 — 2025",
-    role: "Hackathon Competitor & Builder",
-    entity: "Rapid Prototyping",
-    description:
-      "Tested engineering limits in high-pressure environments. Collaborated with exceptional minds to architect and deploy functional MVPs in 48 hours, bridging the gap between raw code and product viability.",
-    icon: Rocket,
-    gradient: "from-orange-500/20 to-amber-500/20",
-    tags: [
-      "Rapid Prototyping",
-      "Team Leadership",
-      "Product Strategy",
-    ],
-  },
-  {
-    year: "2025 — Present",
-    role: "Creative Developer & AI Explorer",
-    entity: "The Frontier",
-    description:
-      "Fusing award-winning frontend motion design with emerging machine learning models. Creating immersive, cinematic web experiences that don't just function perfectly, but feel alive and responsive.",
-    icon: BrainCircuit,
-    gradient: "from-fuchsia-500/20 to-pink-500/20",
-    tags: [
-      "Framer Motion",
-      "WebGL",
-      "AI Integration",
-      "UX/UI",
-    ],
-  },
-];
+import { experienceData } from "@/app/data/experienceData";
 
 export default function Experience() {
   const containerRef =
     useRef<HTMLDivElement>(null);
 
   // Track overall scroll progress
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   // Smooth physics spring
+
   const smoothProgress = useSpring(
     scrollYProgress,
     {
       stiffness: 100,
       damping: 20,
       mass: 0.5,
-    }
+    },
   );
 
   return (
     <section
       id="experience"
-      className="relative w-full bg-[#030303]"
+      className="
+        relative
+        w-full
+        bg-[#030303]
+      "
     >
       {/* Background Texture */}
 
@@ -179,7 +118,7 @@ export default function Experience() {
               text-neutral-400
             "
           >
-            Evolution
+            {experienceData.badge}
           </span>
         </motion.div>
 
@@ -215,7 +154,8 @@ export default function Experience() {
             lg:text-7xl
           "
         >
-          The journey from
+          {experienceData.heading.first}
+
           <br />
 
           <span
@@ -227,7 +167,7 @@ export default function Experience() {
               to-neutral-600
             "
           >
-            logic to emotion.
+            {experienceData.heading.second}
           </span>
         </motion.h2>
       </div>
@@ -244,7 +184,7 @@ export default function Experience() {
           pb-32
         "
         style={{
-          height: `${EXPERIENCES.length * 100}vh`,
+          height: `${experienceData.experiences.length * 100}vh`,
         }}
       >
         <div
@@ -271,21 +211,22 @@ export default function Experience() {
               md:px-8
             "
           >
-            {EXPERIENCES.map(
+            {experienceData.experiences.map(
               (exp, index) => {
                 const targetScale =
                   1 -
-                  ((EXPERIENCES.length -
+                  ((experienceData.experiences.length -
                     index) *
                     0.04);
 
                 const range = [
                   index *
                     (1 /
-                      EXPERIENCES.length),
+                      experienceData.experiences.length),
+
                   (index + 1) *
                     (1 /
-                      EXPERIENCES.length),
+                      experienceData.experiences.length),
                 ];
 
                 return (
@@ -299,11 +240,11 @@ export default function Experience() {
                       targetScale
                     }
                     total={
-                      EXPERIENCES.length
+                      experienceData.experiences.length
                     }
                   />
                 );
-              }
+              },
             )}
           </div>
         </div>
@@ -317,11 +258,17 @@ export default function Experience() {
 // ======================================================
 
 interface StackedCardProps {
-  experience: typeof EXPERIENCES[0];
+  experience:
+    typeof experienceData.experiences[0];
+
   index: number;
+
   progress: any;
+
   range: number[];
+
   targetScale: number;
+
   total: number;
 }
 
@@ -333,6 +280,7 @@ function StackedCard({
   targetScale,
   total,
 }: StackedCardProps) {
+
   const Icon = experience.icon;
 
   const step = 1 / total;
@@ -346,6 +294,7 @@ function StackedCard({
   const delayedRange = [
     startOfNextCard +
       step * 0.5,
+
     endOfNextCard,
   ];
 
@@ -354,19 +303,19 @@ function StackedCard({
   const scale = useTransform(
     progress,
     range,
-    [1, targetScale]
+    [1, targetScale],
   );
 
   const opacity = useTransform(
     progress,
     delayedRange,
-    [1, 0]
+    [1, 0],
   );
 
   const blur = useTransform(
     progress,
     delayedRange,
-    ["blur(0px)", "blur(24px)"]
+    ["blur(0px)", "blur(24px)"],
   );
 
   const yRange = [
@@ -377,7 +326,7 @@ function StackedCard({
   const yOffset = useTransform(
     progress,
     yRange,
-    ["150%", "0%"]
+    ["150%", "0%"],
   );
 
   return (
@@ -386,10 +335,12 @@ function StackedCard({
         scale,
         opacity,
         filter: blur,
+
         y:
           index === 0
             ? "0%"
             : yOffset,
+
         zIndex: index * 10,
       }}
       className="
@@ -584,7 +535,7 @@ function StackedCard({
                 >
                   {tag}
                 </span>
-              )
+              ),
             )}
           </div>
         </div>

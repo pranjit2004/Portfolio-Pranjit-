@@ -4,9 +4,8 @@ import Hero from "@/components/sections/Hero/Hero";
 import About from "@/components/sections/About/about";
 import Skills from "@/components/sections/Skills/skills";
 import Experience from "@/components/sections/Experience/experience";
-import Testimonials from "@/components/sections/Testimonials/Testimonials";
+import FeaturedProjects from "@/components/sections/FeaturedProjects/featured";
 import Contact from "@/components/sections/Contact/Contact";
-import CTA from "@/components/sections/CTA/cta";
 
 
 export default function Home() {
@@ -16,9 +15,8 @@ export default function Home() {
       <About />
       <Skills />
       <Experience />
-      <Testimonials />
+      <FeaturedProjects />
       <Contact />
-      <CTA />
     </main>
   );
 }

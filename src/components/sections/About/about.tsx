@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import React, { useRef } from "react";
 import {
@@ -10,33 +11,9 @@ import {
   useSpring,
 } from "framer-motion";
 
-import {
-  ArrowUpRight,
-  Sparkles,
-  Code2,
-  Cpu,
-} from "lucide-react";
+import { ArrowUpRight, Sparkles, Cpu } from "lucide-react";
 
-// ======================================================
-// Tech Stack - Updated to match your exact tools + ML
-// ======================================================
-
-const TECH_STACK = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Node.js",
-  "MongoDB",
-  "Machine Learning",
-  "Python",
-  "Framer Motion",
-  "C++",
-];
-
-// ======================================================
-// About Section
-// ======================================================
+import { aboutData } from "../../../app/data/aboutData";
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,17 +25,9 @@ export default function About() {
   });
 
   // Background Parallax
-  const backgroundY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-15%", "15%"]
-  );
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
-  const textOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [0, 0.08, 0]
-  );
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.08, 0]);
 
   // Mouse Tracking
   const mouseX = useMotionValue(0);
@@ -96,9 +65,7 @@ export default function About() {
         py-32
       "
     >
-      {/* ====================================================== */}
       {/* Background Noise */}
-      {/* ====================================================== */}
 
       <div
         className="
@@ -115,9 +82,7 @@ export default function About() {
         }}
       />
 
-      {/* ====================================================== */}
       {/* Massive Background Typography */}
-      {/* ====================================================== */}
 
       <motion.div
         style={{
@@ -146,13 +111,11 @@ export default function About() {
             text-white
           "
         >
-          ENGINEER
+          {aboutData.backgroundWord}
         </span>
       </motion.div>
 
-      {/* ====================================================== */}
       {/* Ambient Mouse Glow */}
-      {/* ====================================================== */}
 
       <motion.div
         className="
@@ -173,9 +136,7 @@ export default function About() {
         }}
       />
 
-      {/* ====================================================== */}
       {/* Main Container */}
-      {/* ====================================================== */}
 
       <div
         className="
@@ -193,9 +154,7 @@ export default function About() {
           lg:gap-12
         "
       >
-        {/* ====================================================== */}
-        {/* LEFT SIDE: Typography & Identity */}
-        {/* ====================================================== */}
+        {/* LEFT SIDE */}
 
         <div
           className="
@@ -205,6 +164,7 @@ export default function About() {
           "
         >
           {/* Label */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,6 +178,7 @@ export default function About() {
             "
           >
             <Sparkles className="h-5 w-5 text-neutral-400" />
+
             <span
               className="
                 text-sm
@@ -227,16 +188,21 @@ export default function About() {
                 text-neutral-400
               "
             >
-              CS & Engineering
+              {aboutData.label}
             </span>
           </motion.div>
 
           {/* Headline */}
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               mb-10
               text-5xl
@@ -248,8 +214,9 @@ export default function About() {
               lg:text-7xl
             "
           >
-            Building scalable
+            {aboutData.headline.first}
             <br />
+
             <span
               className="
                 text-transparent
@@ -259,16 +226,21 @@ export default function About() {
                 to-neutral-600
               "
             >
-              digital products.
+              {aboutData.headline.second}
             </span>
           </motion.h2>
 
-          {/* Paragraphs - Updated to your actual bio */}
+          {/* Paragraphs */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="
               max-w-2xl
               text-lg
@@ -279,86 +251,92 @@ export default function About() {
               flex flex-col gap-6
             "
           >
-            <p>
-              I am a passionate Web Developer and Computer Science student focused on building modern, scalable, and user-friendly applications.
-            </p>
-            <p>
-              My goal is to create impactful digital products and continuously push the boundaries of my skills in software engineering and artificial intelligence.
-            </p>
+            {aboutData.paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </motion.div>
 
           {/* CTA */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="mt-12"
           >
-            <button
-              className="
-                group
-                relative
-                flex
-                items-center
-                gap-3
-                overflow-hidden
-                rounded-full
-                border
-                border-white/10
-                bg-white/[0.04]
-                px-7
-                py-4
-                text-sm
-                font-semibold
-                text-white
-                backdrop-blur-md
-                transition-all
-                duration-300
-                hover:bg-white/[0.08]
-              "
-            >
-              <div
+            <Link href={aboutData.cta.href}>
+              <button
                 className="
-                  absolute
-                  inset-0
-                  opacity-0
-                  transition-opacity
-                  duration-300
-                  group-hover:opacity-100
-                  bg-gradient-to-r
-                  from-white/[0.05]
-                  to-transparent
-                "
-              />
-              <span className="relative z-10">
-                Explore My Work
-              </span>
-              <ArrowUpRight
-                className="
-                  relative
-                  z-10
-                  h-4
-                  w-4
-                  transition-transform
-                  duration-300
-                  group-hover:translate-x-1
-                  group-hover:-translate-y-1
-                "
-              />
-            </button>
+        group
+        relative
+        flex
+        items-center
+        gap-3
+        overflow-hidden
+        rounded-full
+        border
+        border-white/10
+        bg-white/[0.04]
+        px-7
+        py-4
+        text-sm
+        font-semibold
+        text-white
+        backdrop-blur-md
+        transition-all
+        duration-300
+        hover:bg-white/[0.08]
+      "
+              >
+                <div
+                  className="
+          absolute
+          inset-0
+          opacity-0
+          transition-opacity
+          duration-300
+          group-hover:opacity-100
+          bg-gradient-to-r
+          from-white/[0.05]
+          to-transparent
+        "
+                />
+
+                <span className="relative z-10">{aboutData.cta.text}</span>
+
+                <ArrowUpRight
+                  className="
+          relative
+          z-10
+          h-4
+          w-4
+          transition-transform
+          duration-300
+          group-hover:translate-x-1
+          group-hover:-translate-y-1
+        "
+                />
+              </button>
+            </Link>
           </motion.div>
         </div>
 
-        {/* ====================================================== */}
-        {/* RIGHT SIDE: The Glass Display */}
-        {/* ====================================================== */}
+        {/* RIGHT SIDE */}
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            duration: 1,
+            delay: 0.2,
+            ease: [0.16, 1, 0.3, 1],
+          }}
           className="
             relative
             flex
@@ -367,7 +345,6 @@ export default function About() {
             justify-center
           "
         >
-          {/* Glass Container */}
           <div
             className="
               relative
@@ -383,6 +360,7 @@ export default function About() {
             "
           >
             {/* Animated Orb */}
+
             <motion.div
               animate={{
                 scale: [1, 1.15, 1],
@@ -412,6 +390,7 @@ export default function About() {
             />
 
             {/* Grid Overlay */}
+
             <div
               className="
                 absolute
@@ -427,7 +406,8 @@ export default function About() {
               }}
             />
 
-            {/* Floating Cards - Updated for Web Dev & ML */}
+            {/* Floating Cards */}
+
             <div
               className="
                 relative
@@ -440,6 +420,7 @@ export default function About() {
               "
             >
               {/* Top Row */}
+
               <div className="flex justify-between">
                 <div
                   className="
@@ -461,10 +442,11 @@ export default function About() {
                       text-neutral-500
                     "
                   >
-                    Focus
+                    {aboutData.cards.focus.label}
                   </div>
+
                   <div className="text-sm font-semibold text-white">
-                    Full-Stack & ML
+                    {aboutData.cards.focus.value}
                   </div>
                 </div>
 
@@ -488,15 +470,17 @@ export default function About() {
                       text-neutral-500
                     "
                   >
-                    Stack
+                    {aboutData.cards.stack.label}
                   </div>
+
                   <div className="text-sm font-semibold text-white">
-                    MERN & Next.js
+                    {aboutData.cards.stack.value}
                   </div>
                 </div>
               </div>
 
               {/* Center Icon */}
+
               <div className="flex justify-center">
                 <motion.div
                   animate={{ y: [-10, 10, -10] }}
@@ -522,7 +506,8 @@ export default function About() {
                 </motion.div>
               </div>
 
-              {/* Bottom Philosophy */}
+              {/* Philosophy */}
+
               <div
                 className="
                   rounded-[2rem]
@@ -543,8 +528,9 @@ export default function About() {
                     text-neutral-500
                   "
                 >
-                  Philosophy
+                  {aboutData.cards.philosophy.label}
                 </div>
+
                 <p
                   className="
                     text-lg
@@ -553,7 +539,7 @@ export default function About() {
                     text-neutral-300
                   "
                 >
-                  Code should not just function; it should solve real problems and create a meaningful impact on the end user.
+                  {aboutData.cards.philosophy.text}
                 </p>
               </div>
             </div>
@@ -561,9 +547,7 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* ====================================================== */}
       {/* Bottom Tech Marquee */}
-      {/* ====================================================== */}
 
       <div
         className="
@@ -587,42 +571,43 @@ export default function About() {
               gap-4
             "
           >
-            {[...TECH_STACK, ...TECH_STACK].map((tech, index) => (
-              <div
-                key={index}
-                className="
-                  flex
-                  items-center
-                  gap-3
-                  rounded-full
-                  border
-                  border-white/10
-                  bg-white/[0.03]
-                  px-6
-                  py-4
-                  backdrop-blur-md
-                "
-              >
-                <div className="h-2 w-2 rounded-full bg-neutral-500" />
-                <span
+            {[...aboutData.techStack, ...aboutData.techStack].map(
+              (tech, index) => (
+                <div
+                  key={index}
                   className="
-                    text-sm
-                    font-semibold
-                    tracking-wide
-                    text-neutral-300
+                    flex
+                    items-center
+                    gap-3
+                    rounded-full
+                    border
+                    border-white/10
+                    bg-white/[0.03]
+                    px-6
+                    py-4
+                    backdrop-blur-md
                   "
                 >
-                  {tech}
-                </span>
-              </div>
-            ))}
+                  <div className="h-2 w-2 rounded-full bg-neutral-500" />
+
+                  <span
+                    className="
+                      text-sm
+                      font-semibold
+                      tracking-wide
+                      text-neutral-300
+                    "
+                  >
+                    {tech}
+                  </span>
+                </div>
+              ),
+            )}
           </motion.div>
         </div>
       </div>
 
-      {/* ====================================================== */}
       {/* Mask CSS */}
-      {/* ====================================================== */}
 
       <style
         dangerouslySetInnerHTML={{

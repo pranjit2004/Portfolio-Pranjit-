@@ -5,6 +5,9 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 
+import { heroData } from "../../../app/data/heroData";
+import Link from "next/link";
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -98,7 +101,7 @@ export default function Hero() {
       <ParallaxLayer
         springX={springX}
         springY={springY}
-        multiplier={-15}
+        multiplier={-30}
         className="
           absolute
           top-[20%]
@@ -125,7 +128,7 @@ export default function Hero() {
           <MapPin className="h-3.5 w-3.5 text-neutral-400" />
 
           <span className="text-xs font-medium text-neutral-400">
-            Lakhimpur, Assam, India
+            {heroData.location}
           </span>
         </div>
       </ParallaxLayer>
@@ -160,7 +163,7 @@ export default function Hero() {
           <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
 
           <span className="text-xs font-medium text-neutral-400">
-            Available for work
+            {heroData.availability}
           </span>
         </div>
       </ParallaxLayer>
@@ -178,7 +181,7 @@ export default function Hero() {
           items-center
           px-4
           pt-32
-          pb-40     /* Increased padding to prevent overlap with scroll indicator */
+          pb-40
           md:px-8
         "
       >
@@ -217,7 +220,7 @@ export default function Hero() {
               text-neutral-300
             "
           >
-            Creative Developer
+            {heroData.role}
           </span>
         </motion.div>
 
@@ -225,41 +228,41 @@ export default function Hero() {
 
         <div
           className="
-    pb-6 /* Increased from pb-2 to give the descenders breathing room */
-    overflow-visible
-    flex
-    w-full
-    flex-col
-    justify-center
-  "
+            pb-6
+            overflow-visible
+            flex
+            w-full
+            flex-col
+            justify-center
+          "
         >
           <MaskedText
-            text="Engineering"
+            text={heroData.heading.first}
             delay={0.3}
             className="
-      text-[clamp(3.5rem,10vw,8rem)]
-      font-black
-      tracking-[-0.06em]
-      leading-tight /* Changed from leading-none to prevent cropping */
-      text-white
-    "
+              text-[clamp(3.5rem,10vw,8rem)]
+              font-black
+              tracking-[-0.06em]
+              leading-tight
+              text-white
+            "
           />
 
           <MaskedText
-            text="Digital Beauty."
+            text={heroData.heading.second}
             delay={0.4}
             className="
-      text-[clamp(3.5rem,10vw,8rem)]
-      font-black
-      tracking-[-0.06em]
-      leading-tight /* Changed from leading-none to prevent cropping */
-      text-transparent
-      bg-clip-text
-      bg-gradient-to-r
-      from-white
-      via-neutral-200
-      to-neutral-500
-    "
+              text-[clamp(3.5rem,10vw,8rem)]
+              font-black
+              tracking-[-0.06em]
+              leading-tight
+              text-transparent
+              bg-clip-text
+              bg-gradient-to-r
+              from-white
+              via-neutral-200
+              to-neutral-500
+            "
           />
         </div>
 
@@ -284,8 +287,7 @@ export default function Hero() {
             md:text-xl
           "
         >
-          Bridging the gap between award-winning interface design and
-          high-performance frontend architecture.
+          {heroData.description}
         </motion.p>
 
         {/* ================= CTA ================= */}
@@ -307,25 +309,26 @@ export default function Hero() {
           "
         >
           <MagneticWrapper>
-            <button
+            <Link
+              href={heroData.cta.primary.href}
               className="
-                group
-                relative
-                flex
-                items-center
-                justify-center
-                gap-3
-                overflow-hidden
-                rounded-full
-                bg-white
-                px-8
-                py-4
-                text-sm
-                font-semibold
-                text-black
-                transition-transform
-                active:scale-95
-              "
+      group
+      relative
+      flex
+      items-center
+      justify-center
+      gap-3
+      overflow-hidden
+      rounded-full
+      bg-white
+      px-8
+      py-4
+      text-sm
+      font-semibold
+      text-black
+      transition-transform
+      active:scale-95
+    "
             >
               <div
                 className="
@@ -341,7 +344,7 @@ export default function Hero() {
                 "
               />
 
-              <span className="relative z-10">Explore Work</span>
+              <span className="relative z-10">{heroData.cta.primary.text}</span>
 
               <ArrowRight
                 className="
@@ -354,35 +357,37 @@ export default function Hero() {
                   group-hover:translate-x-1
                 "
               />
-            </button>
+            </Link>
           </MagneticWrapper>
 
           <MagneticWrapper>
-            <button
-              className="
-                group
-                relative
-                flex
-                items-center
-                justify-center
-                gap-3
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-                px-8
-                py-4
-                text-sm
-                font-semibold
-                text-white
-                backdrop-blur-md
-                transition-all
-                hover:bg-white/10
-                active:scale-95
-              "
-            >
-              <span>View Resume</span>
-            </button>
+            <Link href={heroData.cta.secondary.href} target="_blank">
+              <button
+                className="
+      group
+      relative
+      flex
+      items-center
+      justify-center
+      gap-3
+      rounded-full
+      border
+      border-white/10
+      bg-white/5
+      px-8
+      py-4
+      text-sm
+      font-semibold
+      text-white
+      backdrop-blur-md
+      transition-all
+      hover:bg-white/10
+      active:scale-95
+    "
+              >
+                <span>{heroData.cta.secondary.text}</span>
+              </button>
+            </Link>
           </MagneticWrapper>
         </motion.div>
       </div>
@@ -446,7 +451,6 @@ function MaskedText({
   delay: number;
 }) {
   return (
-    // FIX: Increased pb to stop clipping, added negative mb so the lines stay tight
     <div className="overflow-hidden pb-8 -mb-8 pt-2 w-full flex justify-center">
       <motion.div
         initial={{ y: "100%" }}

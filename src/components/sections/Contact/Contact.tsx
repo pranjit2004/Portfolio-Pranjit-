@@ -11,24 +11,20 @@ import {
 
 import { ArrowRight, Mail, Send } from "lucide-react";
 
-import {
-  FaGithub,
-  FaTwitter,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaGithub, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 // --- Configuration ---
 const SOCIAL_LINKS = [
   { name: "Twitter", icon: FaTwitter, href: "#" },
-  { name: "GitHub", icon: FaGithub, href: "#" },
-  { name: "LinkedIn", icon: FaLinkedinIn, href: "#" },
+  { name: "GitHub", icon: FaGithub, href: "https://github.com/pranjit2004" },
+  { name: "LinkedIn", icon: FaLinkedinIn, href: "https://www.linkedin.com/in/pranjit-hazarika-92297b357?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
 ];
 
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [formState, setFormState] = useState<
-    "idle" | "focused" | "submitted"
-  >("idle");
+  const [formState, setFormState] = useState<"idle" | "focused" | "submitted">(
+    "idle",
+  );
 
   // Subtle parallax for the massive background typography
   const { scrollYProgress } = useScroll({
@@ -36,17 +32,9 @@ export default function Contact() {
     offset: ["start end", "end end"],
   });
 
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-20%", "0%"]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "0%"]);
 
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.8, 1],
-    [0, 1, 1]
-  );
+  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [0, 1, 1]);
 
   return (
     <section
@@ -88,10 +76,8 @@ export default function Contact() {
       </motion.div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-6 md:px-8">
-        
         {/* --- Header Section --- */}
         <div className="mb-16 flex w-full flex-col items-center text-center md:mb-24">
-          
           {/* Availability Status */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -110,7 +96,7 @@ export default function Contact() {
             </div>
 
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-300">
-              Available for new opportunities
+              Open to Visionary Collaborations
             </span>
           </motion.div>
 
@@ -127,7 +113,6 @@ export default function Contact() {
             className="mb-6 text-5xl font-bold leading-[1] tracking-tighter text-white md:text-7xl lg:text-8xl"
           >
             Have an idea? <br />
-
             <span className="bg-gradient-to-r from-neutral-400 to-neutral-600 bg-clip-text text-transparent">
               Let&apos;s build it.
             </span>
@@ -144,10 +129,8 @@ export default function Contact() {
             }}
             className="max-w-2xl text-lg font-medium text-neutral-400 md:text-xl"
           >
-            I&apos;m currently looking to join a
-            cross-functional team that values
-            improving people&apos;s lives through
-            accessible design.
+            I am currently involved in building intelligent products and scalable systems with a long-term
+            vision for innovation, execution, and technology leadership.
           </motion.p>
         </div>
 
@@ -184,16 +167,12 @@ export default function Contact() {
               onBlur={() => setFormState("idle")}
             >
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <FormInput
-                  label="Name"
-                  type="text"
-                  placeholder="John Doe"
-                />
+                <FormInput label="Name" type="text" placeholder="Pranjit Hazarika" />
 
                 <FormInput
                   label="Email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="pranjit1503@gmail.com"
                 />
               </div>
 
@@ -218,9 +197,7 @@ export default function Contact() {
                   >
                     <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-neutral-200 to-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                    <span className="relative z-10">
-                      Send Message
-                    </span>
+                    <span className="relative z-10">Send Message</span>
 
                     <Send className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </button>
@@ -243,16 +220,14 @@ export default function Contact() {
         >
           {/* Direct Email */}
           <a
-            href="mailto:hello@example.com"
+            href="mailto:pranjit1503@gmail.com"
             className="group flex items-center gap-3 text-neutral-400 transition-colors hover:text-white"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors group-hover:bg-white/10">
               <Mail className="h-4 w-4" />
             </div>
 
-            <span className="font-medium">
-              hello@example.com
-            </span>
+            <span className="font-medium">pranjit1503@gmail.com</span>
           </a>
 
           {/* Social Links */}
@@ -307,12 +282,7 @@ function FormInput({
 }
 
 // Premium magnetic button effect
-function MagneticButton({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
+function MagneticButton({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const [position, setPosition] = useState({
@@ -320,23 +290,14 @@ function MagneticButton({
     y: 0,
   });
 
-  const handleMouse = (
-    e: React.MouseEvent<HTMLDivElement>
-  ) => {
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e;
 
-    const {
-      height,
-      width,
-      left,
-      top,
-    } = ref.current!.getBoundingClientRect();
+    const { height, width, left, top } = ref.current!.getBoundingClientRect();
 
-    const middleX =
-      clientX - (left + width / 2);
+    const middleX = clientX - (left + width / 2);
 
-    const middleY =
-      clientY - (top + height / 2);
+    const middleY = clientY - (top + height / 2);
 
     setPosition({
       x: middleX * 0.2,
