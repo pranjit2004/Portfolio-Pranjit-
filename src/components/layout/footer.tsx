@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowUp, MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
 
-import { NAV_LINKS, SOCIAL_LINKS } from "@/app/data/footerData";
+import { NAV_LINKS1, NAV_LINKS2, SOCIAL_LINKS } from "@/app/data/footerData";
 
 export default function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -50,18 +50,16 @@ export default function Footer() {
       {/* Main Grid */}
       <div className="relative z-10 w-full max-w-7xl px-6 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-6 mb-32">
         {/* Left */}
-        <div className="md:col-span-5 flex flex-col justify-between">
+        <div className="md:col-span-4 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Image
-  src="/logo.svg"
-  alt="Pranjit Logo"
-  width={32}
-  height={32}
-  className="object-contain"
-/>
-
-              
+                src="/logo.svg"
+                alt="Pranjit Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
             </div>
 
             <h3 className="text-2xl md:text-3xl font-medium text-neutral-300 leading-tight tracking-tight max-w-md">
@@ -82,15 +80,35 @@ export default function Footer() {
         </div>
 
         {/* Center */}
-        <div className="md:col-span-3 flex flex-col gap-4">
+        <div className="md:col-span-2 flex flex-col gap-4">
           <span className="text-xs font-semibold uppercase tracking-widest text-neutral-600 mb-2">
             Navigation
           </span>
 
           <nav className="flex flex-col gap-3">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS1.map((link) => (
               <a
                 key={link.name}
+                href={link.href}
+                className="text-neutral-400 hover:text-white transition-colors w-fit font-medium"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div className="md:col-span-2 flex flex-col gap-4">
+          <span className="text-xs font-semibold uppercase tracking-widest text-neutral-600 mb-2">
+            Other Projects
+          </span>
+
+          <nav className="flex flex-col gap-3">
+            {NAV_LINKS2.map((link) => (
+              <a
+                key={link.name}
+                target="_blank"
+                  rel="noopener noreferrer"
                 href={link.href}
                 className="text-neutral-400 hover:text-white transition-colors w-fit font-medium"
               >

@@ -10,7 +10,7 @@ export const FeaturedProjectsData = {
 
   projects: [
     {
-      title: "elevate",
+      title: "Elevate",
 
       category: "E-commerce Platform",
 
@@ -27,12 +27,12 @@ export const FeaturedProjectsData = {
     },
 
     {
-      title: "Aether Commerce",
+      title: "Dummy Project",
 
       category: "Scalable Commerce",
 
       description:
-        "High-performance commerce infrastructure engineered with modular architecture, real-time analytics, and seamless UX.",
+        "Placeholder project to demonstrate the structure of the featured projects data",
 
       tech: [
         "TypeScript",
@@ -44,12 +44,12 @@ export const FeaturedProjectsData = {
     },
 
     {
-      title: "Nova OS",
+      title: "Dummy Project",
 
       category: "Productivity Platform",
 
       description:
-        "A collaborative digital workspace focused on speed, motion systems, and scalable frontend architecture.",
+        "Placeholder project to demonstrate the structure of the featured projects data",
 
       tech: [
         "React",
@@ -61,12 +61,12 @@ export const FeaturedProjectsData = {
     },
 
     {
-      title: "Lumina Labs",
+      title: "Dummy Project",
 
       category: "Digital Systems",
 
       description:
-        "Experimental product engineering lab focused on immersive interfaces, interaction systems, and intelligent tooling.",
+        "Placeholder project to demonstrate the structure of the featured projects data",
 
       tech: [
         "Next.js",
