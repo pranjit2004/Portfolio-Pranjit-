@@ -73,7 +73,7 @@ export default function Footer() {
               href="mailto:hello@domain.com"
               className="text-lg font-semibold text-white hover:text-neutral-300 transition-colors inline-block relative group"
             >
-              pranji1503@gmail.com
+              example@gmail.com
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
             </a>
           </div>

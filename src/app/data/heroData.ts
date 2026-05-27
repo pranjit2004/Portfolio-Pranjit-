@@ -23,7 +23,7 @@ export const heroData = {
 
     secondary: {
       text: "View Resume",
-      href: "/resume.pdf",
+      href: "#",
     },
   },
 };

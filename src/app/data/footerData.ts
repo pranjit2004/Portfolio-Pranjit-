@@ -26,13 +26,13 @@ export const SOCIAL_LINKS = [
   {
     name: "GitHub",
     icon: FaGithub,
-    href: "https://github.com/pranjit2004",
+    href: "#",
   },
   {
     name: "LinkedIn",
     target: "_blank",
     icon: FaLinkedinIn,
-    href: "https://www.linkedin.com/in/pranjit-hazarika-92297b357?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    href: "#",
   },
   {
     name: "Discord",

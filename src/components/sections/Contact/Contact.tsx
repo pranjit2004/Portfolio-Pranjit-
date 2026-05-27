@@ -16,8 +16,8 @@ import { FaGithub, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 // --- Configuration ---
 const SOCIAL_LINKS = [
   { name: "Twitter", icon: FaTwitter, href: "#" },
-  { name: "GitHub", icon: FaGithub, href: "https://github.com/pranjit2004" },
-  { name: "LinkedIn", icon: FaLinkedinIn, href: "https://www.linkedin.com/in/pranjit-hazarika-92297b357?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+  { name: "GitHub", icon: FaGithub, href: "#" },
+  { name: "LinkedIn", icon: FaLinkedinIn, href: "#" },
 ];
 
 export default function Contact() {
@@ -167,12 +167,12 @@ export default function Contact() {
               onBlur={() => setFormState("idle")}
             >
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <FormInput label="Name" type="text" placeholder="Pranjit Hazarika" />
+                <FormInput label="Name" type="text" placeholder="Developer" />
 
                 <FormInput
                   label="Email"
                   type="email"
-                  placeholder="pranjit1503@gmail.com"
+                  placeholder="example@gmail.com"
                 />
               </div>
 
@@ -220,14 +220,14 @@ export default function Contact() {
         >
           {/* Direct Email */}
           <a
-            href="mailto:pranjit1503@gmail.com"
+            href="#"
             className="group flex items-center gap-3 text-neutral-400 transition-colors hover:text-white"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-colors group-hover:bg-white/10">
               <Mail className="h-4 w-4" />
             </div>
 
-            <span className="font-medium">pranjit1503@gmail.com</span>
+            <span className="font-medium">example@gmail.com</span>
           </a>
 
           {/* Social Links */}
