@@ -70,7 +70,7 @@ export default function Footer() {
 
           <div className="mt-12 md:mt-24">
             <a
-              href="mailto:hello@domain.com"
+              href="#"
               className="text-lg font-semibold text-white hover:text-neutral-300 transition-colors inline-block relative group"
             >
               example@gmail.com
